@@ -167,7 +167,6 @@ export default class initThree {
           element.style.fontSize = '16px'; // 设置文字大小
           element.onclick = () => {
             let buildLabel = element.innerHTML;
-            // console.log(buildLabel,'buildLabel');
             this.changeOnterMaterial(buildLabel);
           }
           const label = new CSS3DObject(element);
