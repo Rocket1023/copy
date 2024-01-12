@@ -85,7 +85,7 @@ export default class initThree {
     function onMouseClick() { 
       
     }
-    this.addEventListener('click', onMouseClick, false);
+    this.el.addEventListener('click', onMouseClick, false);
     function animate() {
       _this.renderer.render(_this.scene, _this.camera);
       _this.cssRenderer.render(_this.scene, _this.camera);
