@@ -19,13 +19,15 @@ export default class initThree {
     this.id = id;
     this.el = document.getElementById(this.id);
   }
-  gltfLader = new GLTFLoader();
+  dracoLoader = new DRACOLoader();
+  gltfLoader = new GLTFLoader();
   cssRenderer = new CSS3DRenderer();
   buildLabels = []
   // el = document.getElementById(this.id);
   // 初始化场景
   initScene() {
-    console.log(DRACOLoader,'DRACOLoader')
+    this.dracoLoader.setDecoderPath('draco/');
+    this.gltfLoader.setDRACOLoader(this.dracoLoader);
     this.isInit = true;
     this.initCameraPosition = [0, 10, 7];// 相机的初始位置
     this.floorManageCameraPosition = [0, 95, 125]// 点击楼层管理后，相机的位置。
@@ -65,15 +67,15 @@ export default class initThree {
     controls.maxPolarAngle = Math.PI / 2.2;
     controls.addEventListener('end', () => {
       let cameraPosition = this.camera.position;
-      console.log(cameraPosition)
       this.currentCameraPosition = [cameraPosition.x, cameraPosition.y, cameraPosition.z];
     })
     this.controls = controls;
     let _this = this;
     this.el.appendChild(this.renderer.domElement);
     this.el.appendChild(this.cssRenderer.domElement)
-    this.gltfLader.load('model/jjs.glb', (glb) => {
+    this.gltfLoader.load('model/ys_sys.glb', (glb) => {
       this.mainModel = glb.scene;
+      console.log(this.mainModel)
       let allItem = [];
       glb.scene.traverse(i => {
         if (i.material) {

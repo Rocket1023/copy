@@ -83,9 +83,13 @@ export default class initThree {
       this.scene.add(glb.scene);
     })
     function onMouseClick() { 
-      
+      const innermostModel = _this.findInnermostModel(event, _this.scene, _this.camera);
+      console.log(event.target,'event.target')
+      if (innermostModel) {
+        console.log(innermostModel,'targetModel')
+      }
     }
-    this.addEventListener('click', onMouseClick, false);
+    this.el.addEventListener('click', onMouseClick, false);
     function animate() {
       _this.renderer.render(_this.scene, _this.camera);
       _this.cssRenderer.render(_this.scene, _this.camera);
